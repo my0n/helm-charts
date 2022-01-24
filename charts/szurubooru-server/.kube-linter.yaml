@@ -13,3 +13,5 @@ checks:
     - "non-isolated-pod"
     - "run-as-non-root"
     - "use-namespace"
+    - "no-liveness-probe"
+    - "no-readiness-probe"

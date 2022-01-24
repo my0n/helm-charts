@@ -1,4 +1,4 @@
-# my0n/szurubooru-client
+# my0n/szurubooru-server
 
 An unofficial helm chart for the [szurubooru](https://github.com/rr-/szurubooru) server.
 

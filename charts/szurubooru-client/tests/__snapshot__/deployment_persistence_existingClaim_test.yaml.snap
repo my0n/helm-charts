@@ -1,0 +1,61 @@
+should match snapshot:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: szurubooru-client
+        app.kubernetes.io/version: 1.0.0
+        helm.sh/chart: szurubooru-client-1.0.0
+      name: RELEASE-NAME-szurubooru-client
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: szurubooru-client
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: szurubooru-client
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -cx
+            - |
+              exec /docker-start.sh
+            env:
+            - name: BACKEND_HOST
+              value: null
+            - name: BASE_URL
+              value: /
+            image: szurubooru/client:1.0.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /
+                port: http
+            name: szurubooru-client
+            ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /
+                port: http
+            resources: {}
+            securityContext: {}
+            volumeMounts:
+            - mountPath: /data
+              name: data
+          securityContext: {}
+          serviceAccountName: RELEASE-NAME-szurubooru-client
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: my-claim

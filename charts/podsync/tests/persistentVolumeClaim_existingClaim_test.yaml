@@ -1,0 +1,11 @@
+suite: test persistentVolumeClaim
+templates:
+  - persistentVolumeClaim.yaml
+tests:
+  - it: should not generate a PVC
+    set:
+      persistence.enabled: true
+      persistence.existingClaim: my-claim
+    asserts:
+      - hasDocuments:
+          count: 0

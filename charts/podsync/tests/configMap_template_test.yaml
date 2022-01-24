@@ -1,0 +1,12 @@
+suite: test configMap
+templates:
+  - configMap.yaml
+tests:
+  - it: should match snapshot
+    set:
+      configuration.template: |
+        [server]
+        port = ${PODSYNC_PORT}
+        hostname = "http://${PODSYNC_INGRESS_HOST}"
+    asserts:
+      - matchSnapshot: {}

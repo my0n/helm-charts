@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: should match snapshot
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      persistence.enabled: true
+      persistence.existingClaim: my-claim
+    template: deployment.yaml
+    asserts:
+      - matchSnapshot: {}

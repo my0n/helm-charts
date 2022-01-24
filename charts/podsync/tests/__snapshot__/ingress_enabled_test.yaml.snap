@@ -1,0 +1,24 @@
+should match snapshot:
+  1: |
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: podsync
+        app.kubernetes.io/version: 1.0.0
+        helm.sh/chart: podsync-1.0.0
+      name: RELEASE-NAME-podsync
+    spec:
+      rules:
+      - host: chart-example.local
+        http:
+          paths:
+          - backend:
+              service:
+                name: RELEASE-NAME-podsync
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific

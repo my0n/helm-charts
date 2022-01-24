@@ -1,0 +1,9 @@
+suite: test persistentVolumeClaim
+templates:
+  - persistentVolumeClaim.yaml
+tests:
+  - it: should match snapshot
+    set:
+      persistence.enabled: true
+    asserts:
+      - matchSnapshot: {}

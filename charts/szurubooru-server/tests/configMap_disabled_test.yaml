@@ -1,0 +1,13 @@
+suite: test configMap
+templates:
+  - configMap.yaml
+tests:
+  - it: should not generate a config map
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      configuration.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0

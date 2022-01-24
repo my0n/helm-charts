@@ -1,0 +1,23 @@
+suite: test deployment
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: should match snapshot
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      configuration.enabled: true
+      configuration.template: |
+        name: My Self-Hosted Szurubooru
+        secret: ${SZURUBOORU_SECRET}
+      configuration.templateEnv:
+        - name: SZURUBOORU_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: szurubooru-secret
+              key: secret
+    template: deployment.yaml
+    asserts:
+      - matchSnapshot: {}

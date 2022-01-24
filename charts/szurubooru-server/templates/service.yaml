@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "szurubooru-server.fullname" . }}
+  labels:
+    {{- include "szurubooru-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 6666
+      protocol: TCP
+      name: api
+  selector:
+    {{- include "szurubooru-server.selectorLabels" . | nindent 4 }}

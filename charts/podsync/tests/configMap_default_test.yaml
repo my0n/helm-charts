@@ -1,0 +1,7 @@
+suite: test configMap
+templates:
+  - configMap.yaml
+tests:
+  - it: should match snapshot
+    asserts:
+      - matchSnapshot: {}

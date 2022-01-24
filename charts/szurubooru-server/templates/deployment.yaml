@@ -1,0 +1,150 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "szurubooru-server.fullname" . }}
+  labels:
+    {{- include "szurubooru-server.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "szurubooru-server.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configMap.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "szurubooru-server.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "szurubooru-server.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.db | quote }}
+            - name: POSTGRES_HOST
+              value: {{ .Values.postgres.host | quote }}
+            - name: POSTGRES_PORT
+              value: {{ .Values.postgres.port | quote }}
+            {{- if .Values.postgres.userSecret }}
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  {{- toYaml .Values.postgres.userSecret | nindent 18 }}
+            {{- else if .Values.postgres.user }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user | quote }}
+            {{- end }}
+            {{- if .Values.postgres.passwordSecret }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  {{- toYaml .Values.postgres.passwordSecret | nindent 18 }}
+            {{- else if .Values.postgres.password }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password | quote }}
+            {{- end }}
+            - name: LOG_SQL
+              {{- if .Values.postgres.verboseLogs }}
+              value: "1"
+              {{- else }}
+              value: "0"
+              {{- end }}
+          ports:
+            - name: api
+              containerPort: 6666
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /.dockerenv
+              name: dockerenv
+              subPath: .dockerenv
+            - mountPath: /data
+              name: data
+            {{- if .Values.configuration.enabled }}
+            - mountPath: /opt/app/config.yaml
+              name: config-final
+              subPath: config.yaml
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      initContainers:
+        - name: {{ .Chart.Name }}-generate-dockerenv
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          args:
+            - '/bin/sh'
+            - '-c'
+            - 'touch /.dockerenv'
+          volumeMounts:
+            - mountPath: /.dockerenv
+              name: dockerenv
+              subPath: .dockerenv
+      {{- if .Values.configuration.enabled }}
+        - name: {{ .Chart.Name }}-init-config
+          image: bhgedigital/envsubst:v1.0-alpine3.6
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- if .Values.ingress.enabled }}
+            - name: SZURUBOORU_HOST
+              value: {{ .Values.ingress.host | default "localhost" }}
+            {{- end }}
+            {{- with .Values.configuration.templateEnv }}
+            {{ toYaml . | nindent 12 }}
+            {{- end }}
+          args:
+            - '/bin/sh'
+            - '-c'
+            - 'envsubst < /workdir/config.yaml > /processed/config.yaml'
+          volumeMounts:
+            - mountPath: /workdir
+              name: config-template
+            - mountPath: /processed
+              name: config-final
+      {{- end }}
+      volumes:
+        {{- if .Values.configuration.enabled }}
+        - name: config-template
+          configMap:
+            name: {{ include "szurubooru-server.fullname" . }}
+        {{- end }}
+        - name: config-final
+          emptyDir: {}
+        - name: dockerenv
+          emptyDir: {}
+        - name: data
+          {{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+          {{- else if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "szurubooru-server.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

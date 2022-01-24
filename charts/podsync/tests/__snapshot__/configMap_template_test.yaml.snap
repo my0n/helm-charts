@@ -1,0 +1,12 @@
+should match snapshot:
+  1: |
+    apiVersion: v1
+    data:
+      config.toml: |
+        # template
+        [server]
+        port = ${PODSYNC_PORT}
+        hostname = "http://${PODSYNC_INGRESS_HOST}"
+    kind: ConfigMap
+    metadata:
+      name: RELEASE-NAME-podsync

@@ -1,0 +1,15 @@
+suite: test deployment
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: should match snapshot
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      podAnnotations:
+        a8r.io/description: A very nice pod
+    template: deployment.yaml
+    asserts:
+      - matchSnapshot: {}

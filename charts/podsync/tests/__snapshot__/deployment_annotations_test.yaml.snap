@@ -1,0 +1,79 @@
+should match snapshot:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: podsync
+        app.kubernetes.io/version: 1.0.0
+        helm.sh/chart: podsync-1.0.0
+      name: RELEASE-NAME-podsync
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: podsync
+      template:
+        metadata:
+          annotations:
+            a8r.io/description: A very nice pod
+            checksum/config: 38cbef60138d587f4816213b2041aa0aecebf6c04005840d973741c22d3b6160
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: podsync
+        spec:
+          containers:
+          - image: tdeutsch/podsync:1.0.0
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /
+                port: http
+            name: podsync
+            ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /
+                port: http
+            resources: {}
+            securityContext: {}
+            volumeMounts:
+            - mountPath: /app/data
+              name: data
+            - mountPath: /app/config.toml
+              name: config-final
+              subPath: config.toml
+          initContainers:
+          - args:
+            - sh
+            - -c
+            - envsubst < /workdir/config.toml > /processed/config.toml
+            env:
+            - name: PODSYNC_PORT
+              value: "8080"
+            - name: PODSYNC_DATA_DIR
+              value: /app/data
+            image: bhgedigital/envsubst:v1.0-alpine3.6
+            imagePullPolicy: IfNotPresent
+            name: podsync-init-config
+            volumeMounts:
+            - mountPath: /workdir
+              name: config-template
+            - mountPath: /processed
+              name: config-final
+          securityContext: {}
+          serviceAccountName: RELEASE-NAME-podsync
+          volumes:
+          - configMap:
+              name: RELEASE-NAME-podsync
+            name: config-template
+          - emptyDir: {}
+            name: config-final
+          - emptyDir: {}
+            name: data

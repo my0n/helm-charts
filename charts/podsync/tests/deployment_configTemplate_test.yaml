@@ -1,0 +1,17 @@
+suite: test deployment
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: should match snapshot
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      configuration.template: |
+        [server]
+        port = ${PODSYNC_PORT}
+        hostname = "http://${PODSYNC_INGRESS_HOST}"
+    template: deployment.yaml
+    asserts:
+      - matchSnapshot: {}

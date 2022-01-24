@@ -1,0 +1,15 @@
+should match snapshot:
+  1: |
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations: {}
+      name: RELEASE-NAME-szurubooru-server
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: null
+      volumeMode: Filesystem

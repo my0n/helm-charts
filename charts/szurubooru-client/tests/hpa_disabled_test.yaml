@@ -1,0 +1,10 @@
+suite: test hpa
+templates:
+  - hpa.yaml
+tests:
+  - it: should not generate an HPA
+    set:
+      autoscaling.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0

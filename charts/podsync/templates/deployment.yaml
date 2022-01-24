@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "podsync.fullname" . }}
+  labels:
+    {{- include "podsync.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "podsync.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configMap.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "podsync.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "podsync.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/data
+              name: data
+            - mountPath: /app/config.toml
+              name: config-final
+              subPath: config.toml
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      initContainers:
+        - name: {{ .Chart.Name }}-init-config
+          image: bhgedigital/envsubst:v1.0-alpine3.6
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PODSYNC_PORT
+              value: "8080"
+            - name: PODSYNC_DATA_DIR
+              value: /app/data
+            {{- if .Values.ingress.enabled }}
+            - name: PODSYNC_HOST
+              value: {{ .Values.ingress.host | default "localhost" }}
+            {{- end }}
+            {{- with .Values.configuration.env }}
+            {{ toYaml . | nindent 12 }}
+            {{- end }}
+          args:
+            - 'sh'
+            - '-c'
+            {{- if .Values.configuration.envInjectSource }}
+            - 'source {{ .Values.configuration.envInjectSource }} && envsubst < /workdir/config.toml > /processed/config.toml'
+            {{- else }}
+            - 'envsubst < /workdir/config.toml > /processed/config.toml'
+            {{- end }}
+          volumeMounts:
+            - mountPath: /workdir
+              name: config-template
+            - mountPath: /processed
+              name: config-final
+      volumes:
+        - name: config-template
+          configMap:
+            name: {{ include "podsync.fullname" . }}
+        - name: config-final
+          emptyDir: {}
+        - name: data
+          {{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+          {{- else if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "podsync.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

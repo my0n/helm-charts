@@ -1,0 +1,11 @@
+suite: test persistentVolumeClaim
+templates:
+  - persistentVolumeClaim.yaml
+tests:
+  - it: should match snapshot
+    set:
+      persistence.enabled: true
+      persistence.annotations:
+        a8r.io/description: A very nice PVC
+    asserts:
+      - matchSnapshot: {}

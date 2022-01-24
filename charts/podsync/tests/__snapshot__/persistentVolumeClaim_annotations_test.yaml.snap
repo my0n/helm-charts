@@ -1,0 +1,16 @@
+should match snapshot:
+  1: |
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        a8r.io/description: A very nice PVC
+      name: RELEASE-NAME-podsync
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: null
+      volumeMode: Filesystem

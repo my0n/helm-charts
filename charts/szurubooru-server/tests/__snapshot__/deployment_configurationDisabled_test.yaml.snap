@@ -1,0 +1,72 @@
+should match snapshot:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: szurubooru-server
+        app.kubernetes.io/version: 1.0.0
+        helm.sh/chart: szurubooru-server-1.0.0
+      name: RELEASE-NAME-szurubooru-server
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: szurubooru-server
+      template:
+        metadata:
+          annotations:
+            checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: szurubooru-server
+        spec:
+          containers:
+          - env:
+            - name: POSTGRES_DB
+              value: szurubooru
+            - name: POSTGRES_HOST
+              value: ""
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: LOG_SQL
+              value: "0"
+            image: szurubooru/server:1.0.0
+            imagePullPolicy: IfNotPresent
+            name: szurubooru-server
+            ports:
+            - containerPort: 6666
+              name: api
+              protocol: TCP
+            resources: {}
+            securityContext: {}
+            volumeMounts:
+            - mountPath: /.dockerenv
+              name: dockerenv
+              subPath: .dockerenv
+            - mountPath: /data
+              name: data
+          initContainers:
+          - args:
+            - /bin/sh
+            - -c
+            - touch /.dockerenv
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            name: szurubooru-server-generate-dockerenv
+            volumeMounts:
+            - mountPath: /.dockerenv
+              name: dockerenv
+              subPath: .dockerenv
+          securityContext: {}
+          serviceAccountName: RELEASE-NAME-szurubooru-server
+          volumes:
+          - emptyDir: {}
+            name: config-final
+          - emptyDir: {}
+            name: dockerenv
+          - emptyDir: {}
+            name: data

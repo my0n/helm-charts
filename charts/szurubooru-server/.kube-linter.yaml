@@ -1,0 +1,17 @@
+checks:
+  addAllBuiltIn: true
+  exclude:
+    - "default-service-account"
+    - "no-anti-affinity"
+    - "required-annotation-email"
+    - "required-label-owner"
+    - "unset-cpu-requirements"
+    - "unset-memory-requirements"
+    - "minimum-three-replicas"
+    - "no-read-only-root-fs"
+    - "no-rolling-update-strategy"
+    - "non-isolated-pod"
+    - "run-as-non-root"
+    - "use-namespace"
+    - "no-liveness-probe"
+    - "no-readiness-probe"

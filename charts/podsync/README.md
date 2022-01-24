@@ -1,6 +1,6 @@
 # my0n/podsync
 
-An unofficial helm chart for [podsync](https://github.com/mxpv/podsync) (currently using [this version](https://github.com/tuxpeople/docker-podsync) for yt-dlp support). I made this for my own learning purposes, but maybe you'll get some use out of it, too!
+An unofficial helm chart for [podsync](https://github.com/mxpv/podsync) (currently using [this version](https://github.com/tuxpeople/docker-podsync) for yt-dlp support).
 
 ## Example usage
 

@@ -3,6 +3,21 @@ entries:
   podsync:
   - apiVersion: v2
     appVersion: v2.4.2
+    created: "2022-01-29T20:54:41.916880918Z"
+    description: An unofficial helm chart for podsync.
+    digest: 45ade802a5a7d533ebeeda6a32b1132e4d80f7ae9fcbba8d5f61ead8b89e1632
+    home: https://github.com/my0n/podsync-helm-chart
+    maintainers:
+    - name: my0n
+    name: podsync
+    sources:
+    - https://github.com/my0n/podsync-helm-chart
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/podsync-1.5.3/podsync-1.5.3.tgz
+    version: 1.5.3
+  - apiVersion: v2
+    appVersion: v2.4.2
     created: "2022-01-24T06:29:42.126208037Z"
     description: An unofficial helm chart for podsync.
     digest: 817c6a7f471cc8334c9c58008e2d5241e20a5dfeae3d953b12236fb486792a5f
@@ -48,4 +63,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-01-24T06:29:41.849846028Z"
+generated: "2022-01-29T20:54:42.162191262Z"

@@ -35,7 +35,7 @@ configuration:
 # Persistence for data such as downloaded video content
 persistence:
   # If enabled, a Persistent Volume Claim will either be created or used.
-  # If not enabled, just uses an emptyDir.
+  # If not enabled, podsync just uses an emptyDir.
   enabled: false
 
   # Use an existing Persistent Volume Claim. If empty string (default), then a new one will be generated.

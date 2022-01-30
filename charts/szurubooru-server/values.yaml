@@ -33,7 +33,7 @@ configuration:
 # Persistence for server data
 persistence:
   # If enabled, a Persistent Volume Claim will either be created or used.
-  # If not enabled, just uses an emptyDir.
+  # If not enabled, the server just uses an emptyDir.
   enabled: false
   # Use an existing Persistent Volume Claim. If empty string (default), then a new one will be generated.
   existingClaim: ""
@@ -54,13 +54,13 @@ postgres:
   host: ""
   # PostgreSQL port. Sets POSTGRES_PORT on the server pod.
   port: 5432
-  # PostgreSQL username (overrides `server.postgres.userSecret`). Sets POSTGRES_USER on the server pod.
+  # PostgreSQL username (overrides `postgres.userSecret`). Sets POSTGRES_USER on the server pod.
   user: ""
   # Existing secret for the PostgreSQL username. Sets POSTGRES_USER on the server pod.
   userSecret: {}
     # name: szurubooru-postgres-credentials
     # key: user
-  # PostgreSQL password (overrides `server.postgres.passwordSecret`). Sets POSTGRES_PASSWORD on the server pod.
+  # PostgreSQL password (overrides `postgres.passwordSecret`). Sets POSTGRES_PASSWORD on the server pod.
   password: ""
   # Existing secret for the PostgreSQL password. Sets POSTGRES_PASSWORD on the server pod.
   passwordSecret: {}

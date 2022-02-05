@@ -3,6 +3,23 @@ entries:
   podsync:
   - apiVersion: v2
     appVersion: v2.4.2
+    created: "2022-02-05T20:33:29.497855904Z"
+    description: An unofficial helm chart for podsync.
+    digest: 04f104f8d44283f76a2754f346dccb9fb95750602751d736b2a2d1de7a33bb10
+    home: https://github.com/my0n/helm-charts/tree/master/charts/podsync
+    maintainers:
+    - name: my0n
+    name: podsync
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/podsync
+    - https://github.com/mxpv/podsync
+    - https://github.com/tuxpeople/docker-podsync
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/podsync-1.5.4/podsync-1.5.4.tgz
+    version: 1.5.4
+  - apiVersion: v2
+    appVersion: v2.4.2
     created: "2022-01-29T20:54:41.916880918Z"
     description: An unofficial helm chart for podsync.
     digest: 45ade802a5a7d533ebeeda6a32b1132e4d80f7ae9fcbba8d5f61ead8b89e1632
@@ -34,6 +51,22 @@ entries:
   szurubooru-client:
   - apiVersion: v2
     appVersion: "2.5"
+    created: "2022-02-05T20:33:29.612244832Z"
+    description: An unofficial helm chart for the szurubooru client.
+    digest: b6cca791a4272ee5b266d0314ba76b99d799095749ce2b63c85a5f861e430176
+    home: https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-client
+    maintainers:
+    - name: my0n
+    name: szurubooru-client
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-client
+    - https://github.com/rr-/szurubooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/szurubooru-client-0.2.3/szurubooru-client-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: "2.5"
     created: "2022-01-24T06:29:42.291980722Z"
     description: An unofficial helm chart for the szurubooru client.
     digest: 876d798dbfbca4de2d8877f7dbc7c6b5dad9e7242b374afb6059020a9c29178c
@@ -50,6 +83,22 @@ entries:
   szurubooru-server:
   - apiVersion: v2
     appVersion: "2.5"
+    created: "2022-02-05T20:33:29.72976427Z"
+    description: An unofficial helm chart for the szurubooru server.
+    digest: e7ab73508703484865b29ab8152375b5c2890022a6ef48acb95ac329072428a6
+    home: https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
+    maintainers:
+    - name: my0n
+    name: szurubooru-server
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
+    - https://github.com/rr-/szurubooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.3/szurubooru-server-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: "2.5"
     created: "2022-01-24T06:29:42.429814374Z"
     description: An unofficial helm chart for the szurubooru server.
     digest: cfa6db2f94445b0835c71ee12e050dfbb419cc9e33ab1048aa6deb7b0992992e
@@ -63,4 +112,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-01-29T20:54:42.162191262Z"
+generated: "2022-02-05T20:33:29.72978087Z"

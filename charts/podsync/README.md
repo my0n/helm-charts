@@ -107,7 +107,7 @@ podAnnotations:
 
 And that's it! I hope!
 
-## Values.yaml reference
+## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

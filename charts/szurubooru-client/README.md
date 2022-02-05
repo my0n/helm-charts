@@ -28,7 +28,7 @@ ingress:
   host: szurubooru.example.local
 ```
 
-## Values.yaml reference
+## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

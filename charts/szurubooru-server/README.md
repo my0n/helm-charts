@@ -65,7 +65,7 @@ data:
   salt: dmVyeXNlY3JldHNhbHQ=
 ```
 
-## Values.yaml reference
+## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

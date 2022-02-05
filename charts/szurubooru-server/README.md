@@ -73,7 +73,7 @@ data:
 | autoscaling.minReplicas | int | `1` | Min replicas for the horiziontal pod autoscaler. |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization for the horizontal pod autoscaler. |
 | configuration.enabled | bool | `true` | If enabled, provide the config.yaml file to the server. |
-| configuration.template | string | `""` | Template for an automatically generated config file. Environment variables wrapped in `${}` will be replaced. See example above. |
+| configuration.template | string | `""` | Template for an automatically generated config file. Environment variables wrapped in `${}` will be replaced. See example above. A more complete example of the config file can be found on the szurubooru repo [here](https://github.com/rr-/szurubooru/blob/master/server/config.yaml.dist). |
 | configuration.templateEnv | list | `[]` | A list of environment variables to use in `configuration.templateEnv`. See example above. |
 | fullnameOverride | string | `""` | Override for full name of generated resources. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy. |

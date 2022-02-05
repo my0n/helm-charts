@@ -1,5 +1,7 @@
 # helm-charts
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/my0n)](https://artifacthub.io/packages/search?repo=my0n)
+
 Repository of all my helm charts.
 
 ## Charts

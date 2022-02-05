@@ -3,9 +3,11 @@ name: podsync
 description: An unofficial helm chart for podsync.
 maintainers:
   - name: my0n
-home: https://github.com/my0n/podsync-helm-chart
+home: https://github.com/my0n/helm-charts/tree/master/charts/podsync
 sources:
-  - https://github.com/my0n/podsync-helm-chart
+  - https://github.com/my0n/helm-charts/tree/master/charts/podsync
+  - https://github.com/mxpv/podsync
+  - https://github.com/tuxpeople/docker-podsync
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -20,7 +22,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.5.3
+version: 1.5.4
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to

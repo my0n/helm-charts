@@ -2,6 +2,8 @@
 
 An unofficial helm chart for the [szurubooru](https://github.com/rr-/szurubooru) client.
 
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/my0n/helm-charts/issues/new).**
+
 ## Example usage
 
 Install the helm chart:

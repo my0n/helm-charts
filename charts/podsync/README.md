@@ -112,7 +112,7 @@ And that's it! I hope!
 | affinity | object | `{}` | Defines affinity constraint rules. Read more about `affinity` [here](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity). |
 | configuration.env | list | `[]` | A list of environment variables to use in `configuration.template`. See example above. |
 | configuration.envInjectSource | string | `""` | File name of a shell script to load additional template environment variables from. This is useful when using Vault - the initContainer will first `source` the file you provide to load env variables, then it will run `envsubst` on the template with both the variables you specify in `configuration.env` and the variables from this file. |
-| configuration.template | string | `""` | Template for an automatically generated config file. Environment variables wrapped in `${}` will be replaced. See example above. |
+| configuration.template | string | `""` | Template for an automatically generated config file. Environment variables wrapped in `${}` will be replaced. See example above. A more complete example of the config file can be found on the podsync repo [here](https://github.com/mxpv/podsync/blob/main/config.toml.example). |
 | fullnameOverride | string | `""` | Override for full name of generated resources. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy. |
 | image.repository | string | `"tdeutsch/podsync"` | Image repository. |

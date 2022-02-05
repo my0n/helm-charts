@@ -3,9 +3,10 @@ name: szurubooru-server
 description: An unofficial helm chart for the szurubooru server.
 maintainers:
   - name: my0n
-home: https://github.com/my0n/szurubooru-helm-chart
+home: https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
 sources:
-  - https://github.com/my0n/szurubooru-helm-chart
+  - https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
+  - https://github.com/rr-/szurubooru
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -20,7 +21,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.2.2
+version: 0.2.3
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to

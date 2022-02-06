@@ -16,13 +16,15 @@ fullnameOverride: ""
 
 # Configuration for hooking into the backend
 backend:
-  # Host for the szurubooru-server service. Sets BACKEND_HOST on the client pod.
-  host: ""
-    # "szurubooru-server.default.svc"
   # Path for the szurubooru-server service. Sets BASE_URL on the client pod.
   baseUrl: "/"
+  # Host for the szurubooru-server service. Sets BACKEND_HOST on the client pod.
+  host: "localhost"
+    # "szurubooru-server.default.svc"
   # Max file size for the szurubooru-server service. Accepts nginx values.
-  maxFileSize: ""
+  maxFileSize: "1073741824"
+  # Port for the szurubooru-server service.
+  port: 6666
 
 # Persistence for reading images.
 persistence:

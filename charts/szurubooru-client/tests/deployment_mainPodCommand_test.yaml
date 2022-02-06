@@ -1,0 +1,15 @@
+suite: deployment adds additional configuration to the command on the main pod
+templates:
+  - deployment.yaml
+tests:
+  - it: adds additional configuration to the command on the main pod
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    asserts:
+      - matchRegex:
+          path: spec.template.spec.containers[0].command[2]
+          pattern: sed -i "s|client_max_body_size 1073741824;|client_max_body_size ${BACKEND_MAX_FILE_SIZE};|" /etc/nginx/nginx\.conf
+      - matchRegex:
+          path: spec.template.spec.containers[0].command[2]
+          pattern: sed -i "s|server __BACKEND__:6666;|server __BACKEND__:${BACKEND_PORT};|" /etc/nginx/nginx.conf

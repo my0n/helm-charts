@@ -1,16 +1,14 @@
-suite: deployment uses backend.baseUrl
+suite: deployment uses backend.maxFileSize default
 templates:
   - deployment.yaml
 tests:
-  - it: uses backend.baseUrl
+  - it: uses backend.maxFileSize default
     chart:
       version: 1.0.0
       appVersion: 1.0.0
-    set:
-      backend.baseUrl: "/api"
     asserts:
       - contains:
           path: spec.template.spec.containers[0].env
           content:
-            name: BASE_URL
-            value: "/api"
+            name: BACKEND_MAX_FILE_SIZE
+            value: "1073741824"

@@ -1,23 +1,18 @@
-suite: deployment uses postgres.userSecret
+suite: deployment uses postgres.user
 templates:
   - configMap.yaml
   - deployment.yaml
 tests:
-  - it: uses postgres.userSecret
+  - it: uses postgres.user
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
-      postgres.userSecret:
-        name: my-user-secret
-        key: userKey
+      postgres.user: myUser
     template: deployment.yaml
     asserts:
       - contains:
           path: spec.template.spec.containers[0].env
           content:
             name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name: my-user-secret
-                key: userKey
+            value: myUser

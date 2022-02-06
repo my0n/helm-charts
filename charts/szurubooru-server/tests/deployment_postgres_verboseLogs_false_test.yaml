@@ -1,0 +1,18 @@
+suite: deployment uses postgres.verboseLogs false
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: uses postgres.verboseLogs false
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      postgres.verboseLogs: false
+    template: deployment.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: LOG_SQL
+            value: '0'

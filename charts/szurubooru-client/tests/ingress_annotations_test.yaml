@@ -11,4 +11,6 @@ tests:
       ingress.annotations:
         a8r.io/description: A very nice pod
     asserts:
-      - matchSnapshot: {}
+      - equal:
+          path: metadata.annotations.[a8r.io/description]
+          value: A very nice pod

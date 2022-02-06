@@ -1,8 +1,8 @@
-suite: test ingress
+suite: ingress is disabled
 templates:
   - ingress.yaml
 tests:
-  - it: should not generate an ingress
+  - it: is disabled
     set:
       ingress.enabled: false
     asserts:

@@ -1,0 +1,15 @@
+suite: ingress uses backend.maxFileSize string
+templates:
+  - ingress.yaml
+tests:
+  - it: uses backend.maxFileSize string
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      backend.maxFileSize: 100M
+      ingress.enabled: true
+    asserts:
+      - equal:
+          path: metadata.annotations.[nginx.ingress.kubernetes.io/proxy-body-size]
+          value: 100M

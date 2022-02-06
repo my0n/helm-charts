@@ -1,0 +1,20 @@
+suite: ingress uses backend.maxFileSize and ingress.annotations
+templates:
+  - ingress.yaml
+tests:
+  - it: uses backend.maxFileSize and ingress.annotations
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      backend.maxFileSize: 100M
+      ingress.enabled: true
+      ingress.annotations:
+        a8r.io/description: A very nice pod
+    asserts:
+      - equal:
+          path: metadata.annotations.[a8r.io/description]
+          value: A very nice pod
+      - equal:
+          path: metadata.annotations.[nginx.ingress.kubernetes.io/proxy-body-size]
+          value: 100M

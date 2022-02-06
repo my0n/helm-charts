@@ -1,3 +1,15 @@
+{{- if contains "|" (.Values.backend.baseUrl | toString) }}
+{{- fail "backend.baseUrl may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.host | toString) }}
+{{- fail "backend.host may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.maxFileSize | toString) }}
+{{- fail "backend.maxFileSize may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.port | toString) }}
+{{- fail "backend.port may not contain the pipe character '|'" }}
+{{- end }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

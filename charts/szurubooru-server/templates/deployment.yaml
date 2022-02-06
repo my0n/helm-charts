@@ -41,23 +41,23 @@ spec:
               value: {{ .Values.postgres.host | quote }}
             - name: POSTGRES_PORT
               value: {{ .Values.postgres.port | quote }}
-            {{- if .Values.postgres.userSecret }}
+            {{- if .Values.postgres.user }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user | quote }}
+            {{- else if .Values.postgres.userSecret }}
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   {{- toYaml .Values.postgres.userSecret | nindent 18 }}
-            {{- else if .Values.postgres.user }}
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.user | quote }}
             {{- end }}
-            {{- if .Values.postgres.passwordSecret }}
+            {{- if .Values.postgres.password }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password | quote }}
+            {{- else if .Values.postgres.passwordSecret }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   {{- toYaml .Values.postgres.passwordSecret | nindent 18 }}
-            {{- else if .Values.postgres.password }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.password | quote }}
             {{- end }}
             - name: LOG_SQL
               {{- if .Values.postgres.verboseLogs }}

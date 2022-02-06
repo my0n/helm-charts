@@ -1,15 +1,14 @@
-suite: ingress uses ingress.host
+suite: ingress uses ingress.host default
 templates:
   - ingress.yaml
 tests:
-  - it: uses ingress.host
+  - it: uses ingress.host default
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
       ingress.enabled: true
-      ingress.host: my-test-example.local
     asserts:
       - equal:
           path: spec.rules[0].host
-          value: my-test-example.local
+          value: chart-example.local

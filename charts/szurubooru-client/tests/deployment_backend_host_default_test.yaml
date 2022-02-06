@@ -1,16 +1,14 @@
-suite: deployment uses backend.host
+suite: deployment uses backend.host default
 templates:
   - deployment.yaml
 tests:
-  - it: uses backend.host
+  - it: uses backend.host default
     chart:
       version: 1.0.0
       appVersion: 1.0.0
-    set:
-      backend.host: "szurubooru-server.default.svc"
     asserts:
       - contains:
           path: spec.template.spec.containers[0].env
           content:
             name: BACKEND_HOST
-            value: "szurubooru-server.default.svc"
+            value: localhost

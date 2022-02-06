@@ -1,0 +1,13 @@
+suite: deployment fails if backend.port has a pipe
+templates:
+  - deployment.yaml
+tests:
+  - it: fails if backend.port has a pipe
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      backend.port: "pwned|lol"
+    asserts:
+      - failedTemplate:
+          errorMessage: backend.port may not contain the pipe character '|'

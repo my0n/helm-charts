@@ -1,16 +1,16 @@
-suite: deployment uses backend.host
+suite: deployment uses backend.maxFileSize number
 templates:
   - deployment.yaml
 tests:
-  - it: uses backend.host
+  - it: uses backend.maxFileSize number
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
-      backend.host: "szurubooru-server.default.svc"
+      backend.maxFileSize: 1234
     asserts:
       - contains:
           path: spec.template.spec.containers[0].env
           content:
-            name: BACKEND_HOST
-            value: "szurubooru-server.default.svc"
+            name: BACKEND_MAX_FILE_SIZE
+            value: "1234"

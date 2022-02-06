@@ -8,8 +8,7 @@ tests:
       appVersion: 1.0.0
     set:
       ingress.enabled: true
-      service.port: 9000
     asserts:
       - equal:
           path: spec.rules[0].http.paths[0].backend.service.port.number
-          value: 9000
+          value: 80

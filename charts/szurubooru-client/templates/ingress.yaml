@@ -20,7 +20,7 @@ metadata:
     {{- include "szurubooru-client.labels" . | nindent 4 }}
   annotations: {{ if and (not .Values.ingress.annotations) (not .Values.backend.maxFileSize) }} {} {{ end }}
   {{- if .Values.backend.maxFileSize }}
-    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.backend.maxFileSize }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.backend.maxFileSize | quote }}
   {{- end }}
   {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}

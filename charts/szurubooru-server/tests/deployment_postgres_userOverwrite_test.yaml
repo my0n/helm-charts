@@ -1,13 +1,14 @@
-suite: deployment uses postgres.userSecret
+suite: deployment overwrites postgres.userSecret with postgres.user
 templates:
   - configMap.yaml
   - deployment.yaml
 tests:
-  - it: uses postgres.userSecret
+  - it: overwrites postgres.userSecret with postgres.user
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
+      postgres.user: myUser
       postgres.userSecret:
         name: my-user-secret
         key: userKey
@@ -17,7 +18,4 @@ tests:
           path: spec.template.spec.containers[0].env
           content:
             name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name: my-user-secret
-                key: userKey
+            value: myUser

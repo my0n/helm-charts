@@ -1,0 +1,18 @@
+suite: deployment uses postgres.host
+templates:
+  - configMap.yaml
+  - deployment.yaml
+tests:
+  - it: uses postgres.host
+    chart:
+      version: 1.0.0
+      appVersion: 1.0.0
+    set:
+      postgres.host: http://postgres.default.svc
+    template: deployment.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: POSTGRES_HOST
+            value: "http://postgres.default.svc"

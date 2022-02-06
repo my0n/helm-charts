@@ -1,3 +1,15 @@
+{{- if contains "|" (.Values.backend.baseUrl | toString) }}
+{{- fail "backend.baseUrl may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.host | toString) }}
+{{- fail "backend.host may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.maxFileSize | toString) }}
+{{- fail "backend.maxFileSize may not contain the pipe character '|'" }}
+{{- end }}
+{{- if contains "|" (.Values.backend.port | toString) }}
+{{- fail "backend.port may not contain the pipe character '|'" }}
+{{- end }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,13 +49,16 @@ spec:
             - /bin/sh
             - '-cx'
             - |
-              {{- if .Values.backend.maxFileSize }}
-              sed -i "s|client_max_body_size 1073741824;|client_max_body_size {{ .Values.backend.maxFileSize }};|" /etc/nginx/nginx.conf
-              {{- end }}
+              sed -i "s|client_max_body_size 1073741824;|client_max_body_size ${BACKEND_MAX_FILE_SIZE};|" /etc/nginx/nginx.conf
+              sed -i "s|server __BACKEND__:6666;|server __BACKEND__:${BACKEND_PORT};|" /etc/nginx/nginx.conf
               exec /docker-start.sh
           env:
             - name: BACKEND_HOST
               value: {{ .Values.backend.host }}
+            - name: BACKEND_MAX_FILE_SIZE
+              value: {{ .Values.backend.maxFileSize | quote }}
+            - name: BACKEND_PORT
+              value: {{ .Values.backend.port | quote }}
             - name: BASE_URL
               value: {{ .Values.backend.baseUrl }}
           ports:

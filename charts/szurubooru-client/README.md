@@ -38,8 +38,9 @@ ingress:
 | autoscaling.minReplicas | int | `1` | Min replicas for the horiziontal pod autoscaler. |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization for the horizontal pod autoscaler. |
 | backend.baseUrl | string | `"/"` | Path for the szurubooru-server service. Sets BASE_URL on the client pod. |
-| backend.host | string | `""` | Host for the szurubooru-server service. Sets BACKEND_HOST on the client pod. |
-| backend.maxFileSize | string | `""` | Max file size for the szurubooru-server service. Accepts nginx values. Read more about valid nginx configuration syntax [here](http://nginx.org/en/docs/syntax.html). |
+| backend.host | string | `"localhost"` | Host for the szurubooru-server service. Sets BACKEND_HOST on the client pod. |
+| backend.maxFileSize | string | `"1073741824"` | Max file size for the szurubooru-server service. Accepts nginx values. Read more about valid nginx configuration syntax [here](http://nginx.org/en/docs/syntax.html). |
+| backend.port | int | `6666` | Port for the szurubooru-server service. |
 | fullnameOverride | string | `""` | Override for full name of generated resources. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy. |
 | image.repository | string | `"szurubooru/client"` | Image repository. |

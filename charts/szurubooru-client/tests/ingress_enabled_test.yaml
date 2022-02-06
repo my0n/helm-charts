@@ -1,12 +1,13 @@
-suite: test ingress
+suite: ingress is enabled
 templates:
   - ingress.yaml
 tests:
-  - it: should match snapshot
+  - it: is enabled
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
       ingress.enabled: true
     asserts:
-      - matchSnapshot: {}
+      - hasDocuments:
+          count: 1

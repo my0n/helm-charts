@@ -1,16 +1,16 @@
-suite: test ingress
+suite: ingress uses annotations
 templates:
   - ingress.yaml
 tests:
-  - it: should match snapshot
+  - it: uses annotations
     chart:
       version: 1.0.0
       appVersion: 1.0.0
     set:
       ingress.enabled: true
       ingress.annotations:
-        a8r.io/description: A very nice pod
+        a8r.io/description: A very nice ingress
     asserts:
       - equal:
           path: metadata.annotations.[a8r.io/description]
-          value: A very nice pod
+          value: A very nice ingress

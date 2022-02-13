@@ -51,6 +51,22 @@ entries:
   szurubooru-client:
   - apiVersion: v2
     appVersion: "2.5"
+    created: "2022-02-13T03:56:20.907804604Z"
+    description: An unofficial helm chart for the szurubooru client.
+    digest: 5291c05a83853c3b32ac21b3cad377e5f89e033c3767b7862974053c3c041920
+    home: https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-client
+    maintainers:
+    - name: my0n
+    name: szurubooru-client
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-client
+    - https://github.com/rr-/szurubooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/szurubooru-client-0.3.1/szurubooru-client-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
+    appVersion: "2.5"
     created: "2022-02-06T20:17:52.162400703Z"
     description: An unofficial helm chart for the szurubooru client.
     digest: 4d8a00171e42607059c40896be80db25d121d80b393c19cacde50a9fa4341c74
@@ -99,6 +115,22 @@ entries:
   szurubooru-server:
   - apiVersion: v2
     appVersion: "2.5"
+    created: "2022-02-13T03:56:21.020913466Z"
+    description: An unofficial helm chart for the szurubooru server.
+    digest: 6a4b2065cf7c3a45451264aeb8b36dda3872c4e30bba5184b345783add665feb
+    home: https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
+    maintainers:
+    - name: my0n
+    name: szurubooru-server
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/szurubooru-server
+    - https://github.com/rr-/szurubooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.5/szurubooru-server-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
+    appVersion: "2.5"
     created: "2022-02-06T20:17:52.260618033Z"
     description: An unofficial helm chart for the szurubooru server.
     digest: 4b8c62e4c26b31e87d17dcfcdceb27b3cee5c9eb2792eb5c48b7d5220621191a
@@ -144,4 +176,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-02-06T20:17:52.260639633Z"
+generated: "2022-02-13T03:56:21.02109928Z"

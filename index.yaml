@@ -2,6 +2,26 @@ apiVersion: v1
 entries:
   cloudcmd:
   - apiVersion: v2
+    appVersion: 16.4.1
+    created: "2022-07-27T02:33:00.137850122Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: An unofficial helm chart for cloudcmd.
+    digest: 0f3972c4ace5f0c793fbd8ce3101b93576b76aed25a4dc50be1cc8d412933449
+    home: https://github.com/my0n/helm-charts/tree/master/charts/cloudcmd
+    maintainers:
+    - name: my0n
+    name: cloudcmd
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/cloudcmd
+    - https://github.com/coderaiser/cloudcmd
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/cloudcmd-0.0.2/cloudcmd-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: v16.4.1
     created: "2022-07-27T02:18:55.391747759Z"
     dependencies:
@@ -197,4 +217,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-07-27T02:18:55.391901657Z"
+generated: "2022-07-27T02:33:00.137877422Z"

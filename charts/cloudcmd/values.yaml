@@ -1,0 +1,62 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from the k8s@home library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: coderaiser/cloudcmd
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details.
+# See https://cloudcmd.io/#environment-variables-1 for a list of supported environment variables.
+# @default -- See values.yaml
+env:
+  # CLOUDCMD_CONFIG_AUTH: "false"
+  # CLOUDCMD_CONFIG_DIALOG: "false"
+  # CLOUDCMD_AUTH: "true"
+  # CLOUDCMD_USERNAME: "admin"
+  # CLOUDCMD_PASSWORD:
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: secret-name
+  #       key: key-name
+  # CLOUDCMD_ROOT: "/data"
+
+# Any number of volumes can be mounted below, see http://docs.k8s-at-home.com/our-helm-charts/common-library-storage for syntax
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    type: pvc
+
+# Runs as root by default. Set these to whatever user/group you prefer, or leave it as root.
+podSecurityContext: {}
+  # runAsUser: 568
+  # runAsGroup: 568
+  # fsGroup: 568
+  # runAsNonRoot: true
+
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # runAsUser: 568
+  # runAsGroup: 568
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8000
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false

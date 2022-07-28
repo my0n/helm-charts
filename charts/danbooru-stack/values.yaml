@@ -1,0 +1,26 @@
+## -- Uses default values from https://github.com/my0n/helm-charts/blob/master/charts/danbooru/values.yaml
+## @default -- See values.yaml
+danbooru:
+  enabled: true
+
+## -- Uses default values from https://github.com/my0n/helm-charts/blob/master/charts/iqdb/values.yaml
+## @default -- See values.yaml
+iqdb:
+  enabled: true
+
+## -- Uses default values from https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+## @default -- See values.yaml
+postgresql:
+  enabled: true
+  ## -- Set architecture to `replication` to use replicas
+  architecture: standalone
+  # auth:
+  #   existingSecret: my-postgres-password
+  #   existingSecretPasswordKey: password
+
+## -- Uses default values from https://github.com/bitnami/charts/blob/master/bitnami/redis/values.yaml
+## @default -- See values.yaml
+redis:
+  enabled: true
+  ## -- Set architecture to `replication` to use replicas
+  architecture: standalone

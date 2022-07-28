@@ -44,6 +44,26 @@ entries:
   danbooru:
   - apiVersion: v2
     appVersion: 9cab67c0ac72a8c52289302c519715ceec2372d9
+    created: "2022-07-28T21:46:21.873632189Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: An unofficial helm chart for danbooru.
+    digest: 704d0a77b9764e9b85184ef85547a01e473b11d17602b50e0d7f2754a0aa634b
+    home: https://github.com/my0n/helm-charts/tree/master/charts/danbooru
+    maintainers:
+    - name: my0n
+    name: danbooru
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/danbooru
+    - https://github.com/danbooru/danbooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/danbooru-0.0.2/danbooru-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 9cab67c0ac72a8c52289302c519715ceec2372d9
     created: "2022-07-28T21:16:21.509843178Z"
     dependencies:
     - name: common
@@ -318,4 +338,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-07-28T21:20:09.466211536Z"
+generated: "2022-07-28T21:46:21.873665989Z"

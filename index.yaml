@@ -84,6 +84,37 @@ entries:
     version: 0.0.1
   danbooru-stack:
   - apiVersion: v2
+    created: "2022-07-28T21:49:59.876705788Z"
+    dependencies:
+    - condition: danbooru.enabled
+      name: danbooru
+      repository: https://my0n.github.io/helm-charts
+      version: 0.0.2
+    - condition: iqdb.enabled
+      name: iqdb
+      repository: https://my0n.github.io/helm-charts
+      version: 0.0.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.19
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.0.6
+    description: An unofficial helm chart for the entire danbooru stack.
+    digest: 82ca8f7172277da0bd198c2fad56feb01eb7674033639bd49f0100c9b5a3d407
+    home: https://github.com/my0n/helm-charts/tree/master/charts/danbooru-stack
+    maintainers:
+    - name: my0n
+    name: danbooru-stack
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/danbooru-stack
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/danbooru-stack-0.0.3/danbooru-stack-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     created: "2022-07-28T21:20:09.466176736Z"
     dependencies:
     - condition: danbooru.enabled
@@ -338,4 +369,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-07-28T21:46:21.873665989Z"
+generated: "2022-07-28T21:49:59.876887591Z"

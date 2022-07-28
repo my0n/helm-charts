@@ -23,10 +23,10 @@ type: application
 version: 0.0.1
 
 dependencies:
-  - name: danbooru
-    version: 0.0.1
-    repository: https://my0n.github.io/helm-charts
-    condition: danbooru.enabled
+  # - name: danbooru
+  #   version: 0.0.1
+  #   repository: https://my0n.github.io/helm-charts
+  #   condition: danbooru.enabled
   - name: iqdb
     version: 0.0.1
     repository: https://my0n.github.io/helm-charts

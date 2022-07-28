@@ -36,19 +36,6 @@ persistence:
     accessMode: ReadWriteOnce
     size: 10Gi
 
-# @default -- See values.yaml
-podSecurityContext:
-  runAsUser: 568
-  runAsGroup: 568
-  fsGroup: 568
-  runAsNonRoot: true
-
-# @default -- See values.yaml
-securityContext:
-  allowPrivilegeEscalation: false
-  runAsUser: 568
-  runAsGroup: 568
-
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
 service:

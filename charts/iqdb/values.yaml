@@ -1,0 +1,47 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from the k8s@home library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: evazion/iqdb
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# @default -- See values.yaml
+args: ["http", "0.0.0.0", "5588", "/iqdb/data/iqdb.sqlite"]
+
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    type: pvc
+    mountPath: "/iqdb/data"
+    accessMode: ReadWriteOnce
+    size: 10Gi
+
+# @default -- See values.yaml
+podSecurityContext:
+  runAsUser: 568
+  runAsGroup: 568
+  fsGroup: 568
+  runAsNonRoot: true
+
+# @default -- See values.yaml
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsUser: 568
+  runAsGroup: 568
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 5588

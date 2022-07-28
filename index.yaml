@@ -41,6 +41,27 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/cloudcmd-0.0.1/cloudcmd-0.0.1.tgz
     version: 0.0.1
+  iqdb:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2022-07-28T04:23:21.68198489Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: An unofficial helm chart for iqdb.
+    digest: 3dc37cf5429c868d1742745ef2bdb7ae6fae670cde7f238a5603376c7fa4b879
+    home: https://github.com/my0n/helm-charts/tree/master/charts/iqdb
+    maintainers:
+    - name: my0n
+    name: iqdb
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/iqdb
+    - https://github.com/danbooru/iqdb
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/iqdb-0.0.1/iqdb-0.0.1.tgz
+    version: 0.0.1
   podsync:
   - apiVersion: v2
     appVersion: v2.4.2
@@ -217,4 +238,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-07-27T02:33:00.137877422Z"
+generated: "2022-07-28T04:23:21.68201879Z"

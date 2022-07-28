@@ -41,6 +41,55 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/cloudcmd-0.0.1/cloudcmd-0.0.1.tgz
     version: 0.0.1
+  danbooru:
+  - apiVersion: v2
+    appVersion: 9cab67c0ac72a8c52289302c519715ceec2372d9
+    created: "2022-07-28T21:16:21.509843178Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: An unofficial helm chart for danbooru.
+    digest: 02759f9536388597878e0a2bd33031535c076c00df8b7e6cb119d36b89a3f586
+    home: https://github.com/my0n/helm-charts/tree/master/charts/danbooru
+    maintainers:
+    - name: my0n
+    name: danbooru
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/danbooru
+    - https://github.com/danbooru/danbooru
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/danbooru-0.0.1/danbooru-0.0.1.tgz
+    version: 0.0.1
+  danbooru-stack:
+  - apiVersion: v2
+    created: "2022-07-28T21:16:21.693785506Z"
+    dependencies:
+    - condition: iqdb.enabled
+      name: iqdb
+      repository: https://my0n.github.io/helm-charts
+      version: 0.0.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.19
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.0.6
+    description: An unofficial helm chart for the entire danbooru stack.
+    digest: 74181bd755cc0b83d5a41563ace3d0c3d0bd8867122202253fa808508f66e1c2
+    home: https://github.com/my0n/helm-charts/tree/master/charts/danbooru-stack
+    maintainers:
+    - name: my0n
+    name: danbooru-stack
+    sources:
+    - https://github.com/my0n/helm-charts/tree/master/charts/danbooru-stack
+    type: application
+    urls:
+    - https://github.com/my0n/helm-charts/releases/download/danbooru-stack-0.0.1/danbooru-stack-0.0.1.tgz
+    version: 0.0.1
   iqdb:
   - apiVersion: v2
     appVersion: latest
@@ -238,4 +287,4 @@ entries:
     urls:
     - https://github.com/my0n/helm-charts/releases/download/szurubooru-server-0.2.2/szurubooru-server-0.2.2.tgz
     version: 0.2.2
-generated: "2022-07-28T04:23:21.68201879Z"
+generated: "2022-07-28T21:16:21.693821107Z"

@@ -9,7 +9,7 @@ Repository of all my helm charts. Do note that I'm mostly creating these charts 
 | Chart | Description |
 |-------|-------------|
 | [cloudcmd](/charts/cloudcmd) | [Cloud Commander](https://github.com/coderaiser/cloudcmd) is a file manager for the web. |
-| [danbooru](/charts/danbooru) | [danbooru](https://github.com/danbooru/danbooru) is a booru that needs to further introduction. |
+| [danbooru](/charts/danbooru) | [danbooru](https://github.com/danbooru/danbooru) is a booru that needs no further introduction. |
 | [danbooru-stack](/charts/danbooru-stack) | This chart combines multiple charts to form a full-featured [danbooru](https://github.com/danbooru/danbooru) instance. |
 | [iqdb](/charts/iqdb) | [iqdb](https://github.com/danbooru/iqdb) is a reverse image search system. This chart is intended to be used from the [danbooru-stack](/charts/danbooru-stack) chart. |
 | [podsync](/charts/podsync) | [podsync](https://github.com/mxpv/podsync) automatically downloads YouTube or Vimeo videos, and creates RSS feeds for notifications. |
